@@ -30,6 +30,7 @@ class User
   }
 
   // Getter
+  
   public function getId(): int
   {
     return $this->id;
