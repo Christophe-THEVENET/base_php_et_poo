@@ -4,19 +4,22 @@ class Email
 {
   private string $email;
 
+
+// en dessous c est l extention Dock Blocker qui permet d ajouter des commentaires sur une fonction ou a autre. par la suite au survol de l'instantiation d'un objet de la classe Email, des infos supplémentaires seront indiquees par vscode 
+
   /**
-   * Creates a new instance of Email class
+   * Créer une nouvelle instance de la classe Email
    *
-   * @param string $email Plain text email
+   * @param string $email transmet la chaine de caractère de l email
    * @return Email
-   * @throws InvalidArgumentException if Email format is invalid
+   * @throws InvalidArgumentException si format d email invalide on lance une exeption
    */
   public function __construct(string $email)
   {
     $this->email = $email;
 
     if (!$this->isValid()) {
-      throw new InvalidArgumentException("Le format de l'email est incorrect"); // lancer une nouvelle exeption embarqué throw stoppe l'instanciation si l email n est pas valide
+      throw new InvalidArgumentException("Le format de l'email est incorrect"); // lancer une nouvelle exeption embarqué (sera dans le message d'erreur natif (Fatal error) de php) throw stoppe l'instanciation si l email n est pas valide
     }
   }
 
