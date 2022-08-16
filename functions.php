@@ -36,3 +36,6 @@ function getParagraph(string $text, ?string $filter = null): ?string
 
 $paragraph = getParagraph("Coucou Studi");
 $uppercaseParagraph = getParagraph("Recoucou bienvenue !", "uppercase");
+
+
+
