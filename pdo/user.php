@@ -5,12 +5,12 @@ if (!isset($_GET['id'])) {
   exit;
 }
 
-$dbConfig = parse_ini_file('db.ini');
+$dbConfig = parse_ini_file('db.ini.template');
 
 try {
   // DSN = Data Source Name
   $pdo = new PDO(
-    "mysql:host=127.0.0.1;dbname=studi-php-intro;charset=utf8mb4",
+    "mysql:host=127.0.0.1;dbname=base_php_et_poo_delobelle;charset=utf8mb4",
     $dbConfig['DB_USER'],
     $dbConfig['DB_PASSWORD']
   );
@@ -20,7 +20,7 @@ try {
 }
 
 // récupérer l'ID de l'utilisateur depuis l'URL
-$id = intval($_GET['id']);
+$id = intval($_GET['id']); // transfome en int car tout dans l url ($_GET) est string
 
 var_dump($id);
 
@@ -28,6 +28,8 @@ if ($id === 0) {
   echo "Veuillez renseigner un identifiant utilisateur correct";
   exit;
 }
+
+
 
 // récupérer l'utilisateur dans la BDD
 
