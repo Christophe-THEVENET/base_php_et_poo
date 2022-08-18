@@ -7,6 +7,14 @@ if (!isset($_GET['id'])) { // gere l erreur absence de recherche d id ds l url
 
 $dbConfig = parse_ini_file('db.ini'); // renvoi un tableau des donnees du fichier db.ini
 
+// le db.ini est ignoré, on peut decrire un chapitre configuration ds le readme en indiquant: créer un fichier db.ini a u format:
+
+/* DB_HOST = "xxxxxxxxxxxxx"
+DB_NAME = "xxxxxxxxxxxxx"
+DB_USER="xxxxxxxxxxxx"
+DB_PASSWORD="xxxxxxxxxxxxxx"
+DB_CHARSET = "xxxxxxxxxxxxxxxxxxxx" */
+
 try {
   // DSN = Data Source Name
   $pdo = new PDO(
