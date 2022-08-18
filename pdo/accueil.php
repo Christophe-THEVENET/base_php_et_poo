@@ -1,11 +1,18 @@
 <?php
 
+if (!isset($_GET['id'])) { // gere l erreur absence de recherche d id ds l url
+  echo "Veuillez renseigner un identifiant utilisateur";
+  exit; // tres important, arrete le script
+}
+
+$dbConfig = parse_ini_file('db.ini'); // renvoi un tableau des donnees du fichier db.ini
+
 try {
   // DSN = Data Source Name
   $pdo = new PDO(
-    "mysql:host=127.0.0.1;dbname=base_php_et_poo_delobelle;charset=utf8mb4",
-    "base_php_et_poo_delobelle",
-    "1kyA2ZqAFEo]Ro7/"
+    "mysql:host={$dbConfig['DB_HOST']};dbname={$dbConfig['DB_NAME']};charset={$dbConfig['DB_CHARSET']}",
+    $dbConfig['DB_USER'],
+    $dbConfig['DB_PASSWORD']
   );
 } catch (PDOException $e) {
   echo "La connexion à la base de données a échoué";
@@ -13,17 +20,14 @@ try {
 }
 
 // récupérer l'ID de l'utilisateur depuis l'URL
-$id = $_GET['id'];
+$id = intval($_GET["id"]);
 
-// récupérer l'utilisateur dans la BDD
-$query = "SELECT * FROM users WHERE id = $id";
-$statement = $pdo->query($query); // la requete est lancée
-$user = $statement->fetch(PDO::FETCH_ASSOC);  // FETCH_ASSOC retourne un tableau associatif et fetch retourne une seule ligne des données de la table
+/* =============== REQUETE NON PREPAREE =============== */
 
-// Afficher les infos de l'utilisateur
-echo '<pre>';
-print_r(($user) ? $user :  'utilisteur non trouvé');
-echo '</pre>';
+// récupérer l'utilisateur dans la BDD (methode non safe direcit)
+/* $query = "SELECT * FROM users WHERE id = $id"; */
+/* $statement = $pdo->query($query); */ // la requete est lancée
+/* $user = $statement->fetch(PDO::FETCH_ASSOC); */  // FETCH_ASSOC retourne un tableau associatif et fetch retourne une seule ligne des données de la table
 
 
 /* !!!! IL FAUT PLUS SECURISER EN PRODUCTION !!! */
@@ -33,6 +37,16 @@ echo '</pre>';
 /* VALIDATION DE DONNEES */
 
 
+/* =============== REQUETE PREPAREE =============== */
+
+$stmt = $pdo->prepare('SELECT * FROM users WHERE id = :id');
+$stmt->bindParam(":id", $id, PDO::PARAM_INT);
+$stmt->execute();
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 
+// Afficher les infos de l'utilisateur
+echo '<pre>';
+print_r(($user) ? $user :  'utilisteur non trouvé');
+echo '</pre>';
 
