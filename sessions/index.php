@@ -6,7 +6,7 @@ session_start();
 var_dump($_SESSION);
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
@@ -20,3 +20,4 @@ var_dump($_SESSION);
 </body>
 
 </html>
+

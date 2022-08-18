@@ -19,11 +19,13 @@ if (!empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['passwor
 
   /* ========= TELECHARGEMENT FICHIER ==================== */
   if (isset($_FILES['profile_pic']) && is_uploaded_file($_FILES['profile_pic']['tmp_name'])) {
-    $uploadDir = 'profile_pics' . DIRECTORY_SEPARATOR;
+    $uploadDir = 'profile_pics' . DIRECTORY_SEPARATOR; // ca met un slash DIRECTORY.....
     $fileInfo = pathinfo($_FILES['profile_pic']['name']);
     $filename = $fileInfo['filename'] . '_' . mt_rand() . '.' . $fileInfo['extension'];
     move_uploaded_file($_FILES['profile_pic']['tmp_name'], $uploadDir . $filename);
   }
+
+  // si erreur il faut param le fichier php.ini pour augmenter la taille des fichier téléchargés post_max_size et upload_max_filesize
 
 /*   ======================== REQUETE PREPAREE = AJOUTER UN USER ========================= */
   // A FAIRE EN PLUS EN PROD: Gestion d'erreurs (check false, exceptions) + validation données
@@ -35,7 +37,6 @@ if (!empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['passwor
   $stmt->bindValue(":password", htmlentities(password_hash($_POST['password'], PASSWORD_BCRYPT)), PDO::PARAM_STR);
   $stmt->bindParam(":profile_pic", $filename, PDO::PARAM_STR);
   $stmt->execute();
-
 
  /*  $stmt->execute([
     'name' => $_POST['name'] ?? "", // si pas de name (pas requi) on met une chaine vide
@@ -96,3 +97,7 @@ if (!empty($_POST['login']) && !empty($_POST['email']) && !empty($_POST['passwor
 </body>
 
 </html>
+
+
+
+
