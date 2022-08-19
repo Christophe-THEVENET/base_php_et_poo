@@ -1,5 +1,5 @@
 <?php
-var_dump(session_status() === PHP_SESSION_NONE);
+var_dump(session_status() === PHP_SESSION_NONE); // est ce que session_status = PHP_SESSION_NONE voir doc les sessions sont activés mais y en a pas
 
 session_start();
 

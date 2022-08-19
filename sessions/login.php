@@ -3,7 +3,7 @@ require_once 'ConnectionErrorCode.php';
 session_start();
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
@@ -37,11 +37,11 @@ session_start();
   <form action="connect.php" method="POST">
     <div>
       <label for="login">Login :</label>
-      <input type="text" name="login" id="login">
+      <input type="text" name="login" id="login" autocomplete="off">
     </div>
     <div>
       <label for="password">Mot de passe :</label>
-      <input type="password" name="password" id="password">
+      <input type="password" name="password" id="password" autocomplete="off">
     </div>
     <div>
       <button type="submit">Connexion</button>

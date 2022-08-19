@@ -9,14 +9,14 @@ require_once 'functions.php';
 // Alors session_start récupère l'id de session et rétablit le contexte
 session_start();
 
-$connected = isset($_SESSION['connected']) && $_SESSION['connected'] === true;
+$connected = isset($_SESSION['connected']) && $_SESSION['connected'] === true; /* est ce que la personne est connectée ? */
 
 if (!$connected) {
-  redirect('login.php');
+  redirect('login.php'); // fonction perso de redirection ds le fichier functions
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
@@ -26,8 +26,11 @@ if (!$connected) {
 </head>
 
 <body>
-  <h1>Bienvenue !</h1>
+  <h1>Bienvenue ! <span><?= $_SESSION['login'] ?></span></h1>
   <p><a href="logout.php">Déconnexion</a></p>
 </body>
 
 </html>
+
+
+
