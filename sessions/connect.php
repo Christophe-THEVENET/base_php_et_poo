@@ -20,36 +20,40 @@ if (!empty($_POST['login']) && !empty($_POST['password'])) { // si on a un login
     exit;
   }
 
-  $stmt = $pdo->prepare("SELECT * FROM users WHERE `login`= :login AND `password` = :password");
-
-  $stmt->bindValue("login", $_POST['login'], PDO::PARAM_STR);
-  $stmt->bindValue("password", $_POST['password'], PDO::PARAM_STR);
+  /* ============ REQUETE PREPAREE POUR RECUPERER LE USER LOGIN ========= */
+  $stmt = $pdo->prepare("SELECT * FROM users WHERE `login`=:login");
+  $stmt->bindValue(":login", htmlentities($_POST['login']), PDO::PARAM_STR);
   $stmt->execute();
-  $user = $stmt->fetch(PDO::FETCH_ASSOC);
+  $result = $stmt->fetch(PDO::FETCH_ASSOC);
+/*   ========================================================================= */
 
- /*  $id = trim(htmlspecialchars($_GET["id"], ENT_QUOTES));
-  $sql = "DELETE FROM `list` WHERE id = :id";
-  $req = $pdo->prepare($sql);
-  $req->bindParam(":id", $id, PDO::PARAM_INT);
-  $req->execute(); */
 
-  var_dump($user);
+ /* 
+ 
+ var_dump(xxxxxxxx)
+ exit;  pour debugger et eviter la redirection ci dessous permet d afficher la valeur de retour $result */ 
 
   session_start();
 
-  $_SESSION['login'] = $_POST['login']; 
+  // avoir le login ds la session
+  $_SESSION['login'] = $_POST['login'];
 
-  if ($user === false) {
+
+
+/* ============ VERIFICATION DU PASSWORD ET REDIRECTION ========= */
+  if ($result === false) {
     $_SESSION['connection_error_code'] = ConnectionErrorCode::INVALID_CREDENTIALS;
     redirect('login.php');
   } else {
-    if (isset($_POST['password'], $user['password'])) {
+    if (password_verify(htmlentities($_POST['password']), $result['password'])) {
       $_SESSION['connected'] = true;
-     
       redirect('admin.php');
     } else {
       $_SESSION['connection_error_code'] = ConnectionErrorCode::INVALID_CREDENTIALS;
       redirect('login.php');
     }
   }
+
+  $_SESSION['login'] = $_POST['login'];
+
 }

@@ -15,6 +15,7 @@ session_start();
 
 <body>
   <h1>Coucou c'est moi le login</h1>
+  <!-- // gestion des messages d erreur -->
   <?php if (isset($_SESSION['connection_error_code'])) {
     switch ($_SESSION['connection_error_code']) {
       case ConnectionErrorCode::INVALID_CREDENTIALS:
@@ -29,7 +30,7 @@ session_start();
       default:
         $errorMsg = "Une erreur est survenue";
     }
-    unset($_SESSION['connection_error_code']);
+    unset($_SESSION['connection_error_code']); // il faut bien supprimer les messages d erreur de la session sinon ils seront tjrs affichés
   ?>
     <div class="error"><?php echo $errorMsg; ?></div>
   <?php
@@ -37,11 +38,11 @@ session_start();
   <form action="connect.php" method="POST">
     <div>
       <label for="login">Login :</label>
-      <input type="text" name="login" id="login" autocomplete="off">
+      <input type="text" name="login" id="login">
     </div>
     <div>
       <label for="password">Mot de passe :</label>
-      <input type="password" name="password" id="password" autocomplete="off">
+      <input type="password" name="password" id="password">
     </div>
     <div>
       <button type="submit">Connexion</button>

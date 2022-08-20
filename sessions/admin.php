@@ -27,6 +27,7 @@ if (!$connected) {
 
 <body>
   <h1>Bienvenue ! <span><?= $_SESSION['login'] ?></span></h1>
+
   <p><a href="logout.php">Déconnexion</a></p>
 </body>
 
