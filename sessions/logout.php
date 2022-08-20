@@ -9,3 +9,5 @@ session_destroy(); // on detruit la session
 // Redirection vers la page d'accueil
 redirect('index.php');
 
+
+

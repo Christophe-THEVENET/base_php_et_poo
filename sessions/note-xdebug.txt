@@ -1,0 +1,30 @@
+
+
+url localhost/?phpinfo=-1  ===> pour afficher php info
+
+xdebug.org ===> install ===> window ===> follow instalation
+
+
+on copie tout le contenu de php info CTRL a
+
+on colle ds xdebug installation Wizard (champ de texte)
+
+telecharger la dll indiqué ds xdebug
+
+on colle le fichier dll ds wamp/bin/php/php8/ext
+
+ensuite on retourne sds le dossier php8
+
+ds phpForApache.ini ===>   tout en bas on colle
+
+zend_extension="E:/wampserver/bin/php/php8.1.0/ext/php_xdebug-3.1.5.dll"
+xdebug.mode =develop, debug
+xdebug.start_with_request=yes
+
+ds le debug vscode on choisi PHP xdebug 
+
+
+ds vscode on ouvre un script
+
+ds le navigateur on lance le script
+
