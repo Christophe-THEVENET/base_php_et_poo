@@ -38,7 +38,8 @@ if (!empty($_POST['login']) && !empty($_POST['password'])) { // si on a un login
   // avoir le login ds la session
   $_SESSION['login'] = $_POST['login'];
 
-
+// login: Robert
+  // password: test
 
 /* ============ VERIFICATION DU PASSWORD ET REDIRECTION ========= */
   if ($result === false) {

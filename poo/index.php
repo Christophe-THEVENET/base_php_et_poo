@@ -91,13 +91,25 @@ $user = new User(123);
 
 var_dump($user);
 
+echo '<br>';
+
 echo $user->getId();
+
+echo '<br>';
+
 $user->setName('Bob')
   ->setAge(59)
   ->setDescription('wore flight speed dust favorite child twice pictured coach picture strike income afternoon support halfway later actual effect deal shown bread fire activity numeral')
   ->setActive(true);
 
 echo $user->getName();
+
+echo '<br>';
+
+var_dump($user);
+
+echo '<br>';
+
 
 $admin = new User(1);
 

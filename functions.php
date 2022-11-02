@@ -25,17 +25,23 @@ $userAge = 15;
 
 echo isAgeLegal($userAge) ? "Majeur" : "Mineur";
 
+echo '<br>';
 
-function getParagraph(string $text, ?string $filter = null): ?string
+
+function getParagraph(string $text, ?string $filter = null): string
 {
   if ($filter === "uppercase") {
     $text = strtoupper($text);
+    return $text;
   }
-  return "<p>" . $text . "</p>";
+  return $text;
+ 
 }
+ 
 
-$paragraph = getParagraph("Coucou Studi");
-$uppercaseParagraph = getParagraph("Recoucou bienvenue !", "uppercase");
+echo getParagraph("Coucou Studi");
+
+echo '<br>';
 
 
-
+echo getParagraph("Recoucou bienvenue !", "uppercase"); 

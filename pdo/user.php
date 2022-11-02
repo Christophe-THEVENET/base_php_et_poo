@@ -5,12 +5,14 @@ if (!isset($_GET['id'])) {
   exit;
 }
 
-$dbConfig = parse_ini_file('db.ini.template');
+$dbConfig = parse_ini_file('db.ini');
+
+
 
 try {
   // DSN = Data Source Name
   $pdo = new PDO(
-    "mysql:host=127.0.0.1;dbname=base_php_et_poo_delobelle;charset=utf8mb4",
+    "mysql:host={$dbConfig['DB_HOST']};dbname={$dbConfig['DB_NAME']};charset={$dbConfig['DB_CHARSET']}",
     $dbConfig['DB_USER'],
     $dbConfig['DB_PASSWORD']
   );
@@ -52,7 +54,7 @@ if ($user === false) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
   <meta charset="UTF-8">
@@ -63,6 +65,7 @@ if ($user === false) {
 
 <body>
   <img src="../forms-file-upload/profile_pics/<?php echo $user['profile_pic'] ?>" alt="<?php echo $user['name']; ?>">
+  <p><?php echo $user['name']; ?></p>
 </body>
 
 </html>

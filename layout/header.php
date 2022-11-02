@@ -13,7 +13,7 @@
     //   echo "Studi PHP";
     // }
 
-    // echo isset($title) ? $title : "Studi PHP";
+     // echo isset($title) ? $title : "Studi PHP";
 
     echo $title ?? "Studi PHP";
     ?>

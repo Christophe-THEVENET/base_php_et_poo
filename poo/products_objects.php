@@ -8,6 +8,8 @@ $produitCirc = new ProduitCirc(30, "Ballon", 25);
 
 echo $produitRect->getName();
 
+echo '<br>';
+
 $produitRect->setName("Autre produit");
 echo $produitRect->getName();
 
